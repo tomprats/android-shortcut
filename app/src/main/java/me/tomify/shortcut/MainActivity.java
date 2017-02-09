@@ -14,18 +14,11 @@ public class MainActivity extends AppCompatActivity {
         addShortcut();
     }
 
-    private Intent shortcutIntentOther() {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath());
-        intent.setData(uri);
-        intent.setType("*/*");
-        return intent;
-    }
-
     private Intent shortcutIntent() {
         Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setAction("android.provider.action.BROWSE");
+        intent.setClassName("com.android.documentsui", "com.android.documentsui.FilesActivity");
+        intent.setData(Uri.parse(Environment.getExternalStorageDirectory().getPath()));
         intent.setType("*/*");
         return intent;
     }
